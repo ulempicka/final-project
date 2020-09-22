@@ -1,8 +1,8 @@
 package com.example.finalproject.model;
 
-public class Ingredient {
+public class Category {
 
+    private Long id;
     private String name;
-    private double quantity;
     private String description;
 }
