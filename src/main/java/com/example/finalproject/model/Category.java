@@ -3,6 +3,6 @@ package com.example.finalproject.model;
 public class Category {
 
     private Long id;
-    private String name;
+    private CategoryName name;
     private String description;
 }

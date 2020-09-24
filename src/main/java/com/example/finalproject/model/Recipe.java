@@ -1,17 +1,29 @@
 package com.example.finalproject.model;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Recipe {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String description;
-    private int timePrep;
+    private int time;
+    @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
     private String category;
-    private boolean like;
-    private double rating;
-    private List<Ingredient> ingredients;
+    private int rating;
+//    private Ingredient ingredients;
 
 }

@@ -1,0 +1,2 @@
+insert into recipe (id, title, description, time, difficulty, category, rating)
+values (1, 'Zupa pomidorowa', 'Domowa zupa pomidorowa przywołuje najpiękniejsze wspomnienia z dzieciństwa.', 25, 'EASY', 1, 0);

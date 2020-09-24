@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+<body>
+    <div th:replace="fragments :: header"></div>
+
+    <form method="post" th:action="${mode == 'edit' ? '/edytuj' : '/dodaj'}" th:object="${recipe}">
+        Tytuł: <input type="text" th:field="*{title}"><br/>
+        Opis: <textarea th:field="*{description}"></textarea><br/>
+        Czas: <input type="number" th:field="*{time}"> minut <br/>
+        Poziom trudności: <select th:field="*{difficulty}">
+            <option disabled selected value="">Wybierz...</option>
+            <option value="EASY">Latwy</option>
+            <option value="MEDIUM">Sredni</option>
+            <option value="HARD">Trudny</option>
+        </select><br/>
+        Kategoria: <input type="text" th:field="*{category}"><br/>
+        <!--        Link do zdjęcia: <input type="text" th:field="*{imageUrl}"></input><br/>-->
+        <input type="submit" value="Dodaj przepis">
+    </form>
+</body>
+</html>
