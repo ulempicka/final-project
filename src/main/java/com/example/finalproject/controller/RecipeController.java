@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,6 +26,20 @@ public class RecipeController {
     @GetMapping("/")
     String home(){
         return "home";
+    }
+
+    @GetMapping("/wszystkie")
+    String showAllRecipes(Model model){
+        List<Recipe> recipes = recipeService.findAll();
+        model.addAttribute("recipes", recipes);
+        return "list";
+    }
+
+    @GetMapping("/przepis")
+    String getRecipe(@RequestParam Long id, Model model){
+        Optional<Recipe> recipe = recipeService.findById(id);
+        model.addAttribute("recipe", recipe.get());
+        return "recipe";
     }
 
     @GetMapping("/dodaj")

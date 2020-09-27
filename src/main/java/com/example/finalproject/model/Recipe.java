@@ -22,8 +22,17 @@ public class Recipe {
     private int time;
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
-    private String category;
+    //OneToMany
+    private String category;    //list
     private int rating;
-//    private Ingredient ingredients;
+    //OneToMany
+//    private List<Ingredient> ingredients;
 
+    public Recipe(String title, String description, int time, Difficulty difficulty, String category) {
+        this.title = title;
+        this.description = description;
+        this.time = time;
+        this.difficulty = difficulty;
+        this.category = category;
+    }
 }

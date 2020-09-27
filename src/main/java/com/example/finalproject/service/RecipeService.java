@@ -5,10 +5,14 @@ import com.example.finalproject.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class RecipeService {
 
-    RecipeRepository recipeRepository;
+    private RecipeRepository recipeRepository;
+    private List<Recipe> recipes;
 
     @Autowired
     public RecipeService(RecipeRepository recipeRepository) {
@@ -24,5 +28,13 @@ public class RecipeService {
 //        recipe.setTitle(recipeForm.getCategory);
 //        recipe.setTitle(recipeForm.getRating);
         recipeRepository.save(recipe);
+    }
+
+    public List<Recipe> findAll(){
+        return recipeRepository.findAllByOrderByTitle();
+    }
+
+    public Optional<Recipe> findById(Long id){
+        return recipeRepository.findById(id);
     }
 }
