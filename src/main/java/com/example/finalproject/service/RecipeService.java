@@ -5,6 +5,7 @@ import com.example.finalproject.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 public class RecipeService {
 
     private RecipeRepository recipeRepository;
-    private List<Recipe> recipes;
+    private List<Recipe> recipes = new ArrayList<>();   //ta lista powinna byc po stronie category
 
     @Autowired
     public RecipeService(RecipeRepository recipeRepository) {
@@ -20,13 +21,8 @@ public class RecipeService {
     }
 
     public void persistRecipe(Recipe recipeForm){
-        Recipe recipe = new Recipe();
-//        recipe.setTitle(recipeForm.getTitle);
-//        recipe.setTitle(recipeForm.getDescription);
-//        recipe.setTitle(recipeForm.getTime);
-//        recipe.setTitle(recipeForm.getDifficulty);
-//        recipe.setTitle(recipeForm.getCategory);
-//        recipe.setTitle(recipeForm.getRating);
+        Recipe recipe = new Recipe(recipeForm.getTitle(),recipeForm.getDescription(), recipeForm.getTime(), recipeForm.getDifficulty(), recipeForm.getCategory());
+        recipes.add(recipe);    //dodaj metode pomocnicza
         recipeRepository.save(recipe);
     }
 

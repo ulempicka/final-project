@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:include="fragments :: head">
+</head>
 <body>
     <div th:replace="fragments :: header"></div>
 
@@ -8,10 +9,11 @@
 <!--    <img th:src="${recipe.imageUrl}" style="width: 200px"/>-->
     <div>
         <h2 th:text="${recipe.description}">Opis</h2>
-        <p th:text="${recipe.time}">Czas przygotowania</p>
-        <p th:text="${recipe.difficulty}">Czas przygotowania</p>
-        <p th:text="${recipe.category}">Czas przygotowania</p>
-        <p th:text="${recipe.rating}">Czas przygotowania</p>
+        <p th:text="|Czas przygotowania: ${recipe.time}|">Czas przygotowania</p>
+        <p th:text="|Poziom trudności: ${recipe.difficulty}|">Poziom trudności</p>
+        <p th:text="|Kategoria: ${recipe.category}|">Kategoria</p>
+        <p th:text="${recipe.rating}">Liczba polubień</p>
+        <button><img src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/like-256.png" width="30px" height="30px"/></button>
     </div>
 </body>
 </html>
