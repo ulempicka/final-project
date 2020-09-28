@@ -26,6 +26,21 @@ public class RecipeService {
         recipeRepository.save(recipe);
     }
 
+    public void updateRecipe(Recipe recipeForm){
+        Optional<Recipe> byId = findById(recipeForm.getId());
+        if(byId.isPresent()) {
+            Recipe recipeFromDB = byId.get();
+            Long id = recipeFromDB.getId();
+            //update po tym id
+        }
+
+//        recipes.add(recipe);    //jak to zupdatowac po str javy
+    }
+
+    public void deleteRecipe(Long id){
+        recipeRepository.deleteById(id);
+    }
+
     public List<Recipe> findAll(){
         return recipeRepository.findAllByOrderByTitle();
     }

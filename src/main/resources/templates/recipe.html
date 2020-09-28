@@ -4,6 +4,8 @@
 </head>
 <body>
     <div th:replace="fragments :: header"></div>
+    <a th:href="@{'/usun?id=' + ${recipe.id}}">Usun przepis</a><br/>
+    <a th:href="@{'/edytuj?id=' + ${recipe.id}}">Edytuj przepis</a><br/>
 
     <h1 th:text="${recipe.title}">Tytuł</h1>
 <!--    <img th:src="${recipe.imageUrl}" style="width: 200px"/>-->
