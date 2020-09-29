@@ -39,6 +39,7 @@ public class RecipeController {
         Optional<Recipe> recipe = recipeService.findById(id);
         if (recipe.isPresent()){
             model.addAttribute("recipe", recipe.get());
+            model.addAttribute("ingredients", recipe.get().getIngredients());
             return "recipe";
         }else {
             return "redirect:/";

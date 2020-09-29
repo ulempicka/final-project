@@ -17,5 +17,14 @@
         <p th:text="${recipe.rating}">Liczba polubień</p>
         <button><img src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/like-256.png" width="30px" height="30px"/></button>
     </div>
+
+    <div>
+        <h2>Składniki:</h2>
+        <ul>
+            <li th:each="ingredient: ${ingredients}">
+                <p th:text="|${ingredient.quantity} ${ingredient.unit} ${ingredient.name} (${ingredient.description})| "></p>
+            </li>
+        </ul>
+    </div>
 </body>
 </html>

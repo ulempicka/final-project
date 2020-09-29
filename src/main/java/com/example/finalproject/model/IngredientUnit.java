@@ -1,10 +1,10 @@
 package com.example.finalproject.model;
 
-public enum IngredientQuantity {
+public enum IngredientUnit {
 
     ML,
     L,
     KG,
-    MG,
+    G,
     PIECE
 }

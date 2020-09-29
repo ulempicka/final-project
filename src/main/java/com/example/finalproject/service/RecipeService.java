@@ -1,5 +1,6 @@
 package com.example.finalproject.service;
 
+import com.example.finalproject.model.Ingredient;
 import com.example.finalproject.model.Recipe;
 import com.example.finalproject.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

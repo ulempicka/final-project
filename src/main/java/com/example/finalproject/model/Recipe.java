@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,11 +24,12 @@ public class Recipe {
     private int time;
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
-    //OneToMany
+//    @OneToMany
     private String category;    //list
     private int rating;
-    //OneToMany
-//    private List<Ingredient> ingredients;
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST)
+    private List<Ingredient> ingredients = new ArrayList<>();
+//    private String preparation;
 
     public Recipe(String title, String description, int time, Difficulty difficulty, String category) {
         this.title = title;
@@ -34,5 +37,10 @@ public class Recipe {
         this.time = time;
         this.difficulty = difficulty;
         this.category = category;
+    }
+
+    public void addIngredient(Ingredient ingredient){
+        ingredients.add(ingredient);
+        ingredient.setRecipe(this);
     }
 }
