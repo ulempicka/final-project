@@ -19,14 +19,14 @@ public class Ingredient {
     private int quantity;
     @Enumerated(EnumType.STRING)
     private IngredientUnit unit;
-    private String description;
+    private String additionalInfo;
     @ManyToOne
     private Recipe recipe;
 
-    public Ingredient(String name, int quantity, IngredientUnit unit, String description) {
+    public Ingredient(String name, int quantity, IngredientUnit unit, String additionalInfo) {
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
-        this.description = description;
+        this.additionalInfo = additionalInfo;
     }
 }

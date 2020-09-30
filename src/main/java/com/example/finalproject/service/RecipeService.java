@@ -25,7 +25,7 @@ public class RecipeService {
 
     public void persistRecipe(Recipe recipeForm, Ingredient ingredientForm){
         Recipe recipe = new Recipe(recipeForm.getTitle(),recipeForm.getDescription(), recipeForm.getTime(), recipeForm.getDifficulty(), recipeForm.getCategory());
-        Ingredient ingredient = new Ingredient(ingredientForm.getName(), ingredientForm.getQuantity(), ingredientForm.getUnit(), ingredientForm.getDescription());
+        Ingredient ingredient = new Ingredient(ingredientForm.getName(), ingredientForm.getQuantity(), ingredientForm.getUnit(), ingredientForm.getAdditionalInfo());
         recipe.addIngredient(ingredient);
         recipeRepository.save(recipe);
     }

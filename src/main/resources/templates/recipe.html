@@ -24,7 +24,7 @@
         <h2>Składniki:</h2>
         <ul>
             <li th:each="ingredient: ${ingredients}">
-                <p th:text="|${ingredient.quantity} ${ingredient.unit} ${ingredient.name} (${ingredient.description})| "></p>
+                <p th:text="|${ingredient.quantity} ${ingredient.unit} ${ingredient.name} (${ingredient.additionalInfo})| "></p>
             </li>
         </ul>
     </div>
