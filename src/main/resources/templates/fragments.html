@@ -13,5 +13,17 @@
             <h2><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSFInO5MfGs_UqjXtFaqEr-mCY-dXYKFqtEmg&usqp=CAU" width="30px" height="30px"/>Start</h2>
         </a>
     </div>
+
+    <div th:fragment="list">
+    <ul>
+        <li th:each="recipe: ${recipes}">
+            <a th:href="@{'/przepis?id=' + ${recipe.id}}" >
+                <div>
+                    <p th:text="${recipe.title}">Nazwa potrawy</p>
+                </div>
+            </a>
+        </li>
+    </ul>
+    </div>
 </body>
 </html>

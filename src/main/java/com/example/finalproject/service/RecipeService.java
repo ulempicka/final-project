@@ -35,10 +35,8 @@ public class RecipeService {
         if(byId.isPresent()) {
             Recipe recipeFromDB = byId.get();
             Long id = recipeFromDB.getId();
-            //update po tym id
-        }
 
-//        recipes.add(recipe);    //jak to zupdatowac po str javy
+        }
     }
 
     public void updateRating(Long id){
@@ -47,6 +45,10 @@ public class RecipeService {
 
     public List<Recipe> findAll(){
         return recipeRepository.findAllByOrderByTitle();
+    }
+
+    public List<Recipe> findTop5(){
+        return recipeRepository.findTop5ByOrderByRatingDesc();
     }
 
     public List<Recipe> findByCategory(CategoryName categoryName){

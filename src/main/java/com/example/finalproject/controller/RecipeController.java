@@ -24,7 +24,9 @@ public class RecipeController {
     }
 
     @GetMapping("/")
-    String home(){
+    String home(Model model){
+        List<Recipe> recipes = recipeService.findTop5();
+        model.addAttribute("recipes", recipes);
         return "home";
     }
 
@@ -69,6 +71,7 @@ public class RecipeController {
         Optional<Recipe> recipe = recipeService.findById(id);
         if (recipe.isPresent()){
             model.addAttribute("recipe", recipe.get());
+//            model.addAttribute("ingredient", recipe.get().getIngredients());
             model.addAttribute("mode", "edit");
             return "add";
         }else {
@@ -78,14 +81,9 @@ public class RecipeController {
 
 //    @PostMapping("/edytuj")
 //    String edit(Recipe recipe){
-//        Optional<Recipe> byId = recipeService.findById(recipe.getId());
-//        if(byId.isPresent()){
-//            Recipe recipeFromDB = byId.get();   //wstaw nowe wartosci
-//            recipeService.persistRecipe(recipe);
-//            return "redirect:/przepis?id=" + recipe.getId();
-//        }else {
-//            return "redirect:/";
-//        }
+//        recipeService.updateRecipe(recipe);
+//        return "redirect:/wszystkie";
+////        return "redirect:/przepis?id=" + recipe.getId();
 //    }
 
     @GetMapping("/polub")

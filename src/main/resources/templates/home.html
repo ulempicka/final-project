@@ -7,10 +7,20 @@
 
     <a href="/dodaj">Dodaj nowy przepis</a><br/>
     <a href="/wszystkie">Wszystkie przepisy</a><br/>
-    <a href="/kategoria">Kategorie</a><br/>
+
 
     <h1>Książka kucharska</h1>
 
+    <h4>Kategorie:</h4>
+        <a th:href="@{'/kategoria?id=' + ${animal.name}}" th:each="animal: ${animals}">
+            <img th:src="${animal.imageUrl}" style="width: 200px"/>
+            <div>
+                <h2 th:text="${animal.name}">Imię zwierzaka</h2>
+                <p th:text="${animal.description}">Opis zwierzaka</p>
+            </div>
+        </a>
 
+    <h4>Top 5:</h4>
+    <div th:replace="fragments :: list"></div>
 </body>
 </html>
