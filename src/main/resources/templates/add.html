@@ -5,18 +5,31 @@
 <body>
     <div th:replace="fragments :: header"></div>
 
-    <form method="post" th:action="${mode == 'edit' ? '/edytuj' : '/dodaj'}" th:object="${recipe}">
-        Tytuł: <input type="text" th:field="*{title}"><br/>
-        Opis: <textarea th:field="*{description}"></textarea><br/>
-        Czas: <input type="number" th:field="*{time}"> minut <br/>
-        Poziom trudności: <select th:field="*{difficulty}">
+    <h2>Dodaj przepis</h2>
+    <form method="post" th:action="${mode == 'edit' ? '/edytuj' : '/dodaj'}" >
+        Tytuł: <input type="text" th:field="*{recipe.title}"><br/>
+        Opis: <textarea th:field="*{recipe.description}"></textarea><br/>
+        Czas: <input type="number" th:field="*{recipe.time}"> minut <br/>
+        Poziom trudności: <select th:field="*{recipe.difficulty}">
             <option disabled selected value="">Wybierz...</option>
             <option value="EASY">Latwy</option>
             <option value="MEDIUM">Sredni</option>
             <option value="HARD">Trudny</option>
         </select><br/>
-        Kategoria: <input type="text" th:field="*{category}"><br/>
+        Kategoria: <input type="text" th:field="*{recipe.category}"><br/>
         <!--        Link do zdjęcia: <input type="text" th:field="*{imageUrl}"></input><br/>-->
+        <h3>Składniki:</h3>
+        Nazwa: <input type="text" th:field="*{ingredient.name}"><br/>
+        Ilość: <input type="number" th:field="*{ingredient.quantity}"> <br/>
+        Jednostka: <select th:field="*{ingredient.unit}">
+            <option disabled selected value="">Wybierz...</option>
+            <option value="ML">ml</option>
+            <option value="L">l</option>
+            <option value="KG">kg</option>
+            <option value="G">g</option>
+            <option value="PIECE">sztuka</option>
+        </select><br/>
+        Opis / informacje dodatkowe: <textarea th:field="*{ingredient.description}"></textarea><br/>
         <input type="submit" value="Dodaj przepis">
     </form>
 </body>

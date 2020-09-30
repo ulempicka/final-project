@@ -1,5 +1,7 @@
 package com.example.finalproject.service;
 
+import com.example.finalproject.model.Category;
+import com.example.finalproject.model.CategoryName;
 import com.example.finalproject.model.Ingredient;
 import com.example.finalproject.model.Recipe;
 import com.example.finalproject.repository.RecipeRepository;
@@ -21,9 +23,10 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    public void persistRecipe(Recipe recipeForm){
+    public void persistRecipe(Recipe recipeForm, Ingredient ingredientForm){
         Recipe recipe = new Recipe(recipeForm.getTitle(),recipeForm.getDescription(), recipeForm.getTime(), recipeForm.getDifficulty(), recipeForm.getCategory());
-        recipes.add(recipe);    //dodaj metode pomocnicza
+        Ingredient ingredient = new Ingredient(ingredientForm.getName(), ingredientForm.getQuantity(), ingredientForm.getUnit(), ingredientForm.getDescription());
+        recipe.addIngredient(ingredient);
         recipeRepository.save(recipe);
     }
 
@@ -38,15 +41,23 @@ public class RecipeService {
 //        recipes.add(recipe);    //jak to zupdatowac po str javy
     }
 
-    public void deleteRecipe(Long id){
-        recipeRepository.deleteById(id);
+    public void updateRating(Long id){
+        recipeRepository.updateRating(id);
     }
 
     public List<Recipe> findAll(){
         return recipeRepository.findAllByOrderByTitle();
     }
 
+    public List<Recipe> findByCategory(CategoryName categoryName){
+        return recipeRepository.findByCategory(categoryName);
+    }
+
     public Optional<Recipe> findById(Long id){
         return recipeRepository.findById(id);
+    }
+
+    public void deleteRecipe(Long id){
+        recipeRepository.deleteById(id);
     }
 }

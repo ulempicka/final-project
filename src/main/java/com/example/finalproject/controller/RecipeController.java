@@ -1,5 +1,6 @@
 package com.example.finalproject.controller;
 
+import com.example.finalproject.model.Ingredient;
 import com.example.finalproject.model.Recipe;
 import com.example.finalproject.service.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,14 +50,16 @@ public class RecipeController {
     @GetMapping("/dodaj")
     String getAddForm(Model model){
         Recipe recipe = new Recipe();
+        Ingredient ingredient = new Ingredient();   //lista
         model.addAttribute("recipe", recipe);
+        model.addAttribute("ingredient", ingredient);
         model.addAttribute("mode", "add");
         return "add";
     }
 
     @PostMapping("/dodaj")
-    String add(Recipe recipe){
-        recipeService.persistRecipe(recipe);
+    String add(Recipe recipe, Ingredient ingredient){
+        recipeService.persistRecipe(recipe, ingredient);
         return "redirect:/wszystkie";
 //        return "redirect:/przepis?id=" + recipe.getId();
     }
@@ -84,6 +87,12 @@ public class RecipeController {
 //            return "redirect:/";
 //        }
 //    }
+
+    @GetMapping("/polub")
+    String like(@RequestParam Long id){
+        recipeService.updateRating(id);
+        return "redirect:/przepis?id=" + id;
+    }
 
     @GetMapping("/usun")
     String delete(@RequestParam Long id){

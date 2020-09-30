@@ -14,8 +14,10 @@
         <p th:text="|Czas przygotowania: ${recipe.time}|">Czas przygotowania</p>
         <p th:text="|Poziom trudności: ${recipe.difficulty}|">Poziom trudności</p>
         <p th:text="|Kategoria: ${recipe.category}|">Kategoria</p>
-        <p th:text="${recipe.rating}">Liczba polubień</p>
-        <button><img src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/like-256.png" width="30px" height="30px"/></button>
+        <p th:text="|Liczba polubień: ${recipe.rating}|">Liczba polubień</p>
+        <a th:href="@{'/polub?id=' + ${recipe.id}}">
+            <img src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/like-256.png" width="40px" height="40px"/>
+        </a><br/>
     </div>
 
     <div>
