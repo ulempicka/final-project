@@ -1,6 +1,7 @@
 package com.example.finalproject.controller;
 
 import com.example.finalproject.model.Category;
+import com.example.finalproject.model.CategoryName;
 import com.example.finalproject.model.Ingredient;
 import com.example.finalproject.model.Recipe;
 import com.example.finalproject.service.RecipeService;
@@ -56,7 +57,7 @@ public class RecipeController {
     String getAddForm(Model model){
         Recipe recipe = new Recipe();
         Ingredient ingredient = new Ingredient();   //lista
-        String category = new String();
+        Category category = new Category();
         model.addAttribute("recipe", recipe);
         model.addAttribute("ingredient", ingredient);
         model.addAttribute("category", category);
@@ -65,7 +66,7 @@ public class RecipeController {
     }
 
     @PostMapping("/dodaj")
-    String add(Recipe recipe, Ingredient ingredient, String category){
+    String add(Recipe recipe, Ingredient ingredient, Category category){
         recipeService.persistRecipe(recipe, ingredient, category);
         return "redirect:/wszystkie";
 //        return "redirect:/przepis?id=" + recipe.getId();

@@ -21,8 +21,8 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    public void persistRecipe(Recipe recipeForm, Ingredient ingredientForm, String categoryName) {
-        Category categoryFromDb = findCategoryByName(categoryName).get();   //cos nie tak z kategoria
+    public void persistRecipe(Recipe recipeForm, Ingredient ingredientForm, Category category) {
+        Category categoryFromDb = findCategoryByName(category.getCategoryName()).get();   //cos nie tak z kategoria
 
         Recipe recipe = new Recipe(recipeForm.getTitle(), recipeForm.getDescription(), recipeForm.getTime(), recipeForm.getDifficulty(), recipeForm.getPreparation());
         Ingredient ingredient = new Ingredient(ingredientForm.getName(), ingredientForm.getQuantity(), ingredientForm.getUnit(), ingredientForm.getAdditionalInfo());
@@ -64,7 +64,7 @@ public class RecipeService {
         recipeRepository.deleteById(id);
     }
 
-    public Optional<Category> findCategoryByName(String categoryName) {
+    public Optional<Category> findCategoryByName(CategoryName categoryName) {
         return recipeRepository.findCategoryByName(categoryName);
     }
 
