@@ -11,16 +11,17 @@
 
     <h1>Książka kucharska</h1>
 
-    <h4>Kategorie:</h4>
-        <a th:href="@{'/kategoria?id=' + ${animal.name}}" th:each="animal: ${animals}">
-            <img th:src="${animal.imageUrl}" style="width: 200px"/>
-            <div>
-                <h2 th:text="${animal.name}">Imię zwierzaka</h2>
-                <p th:text="${animal.description}">Opis zwierzaka</p>
-            </div>
-        </a>
+    <h2>Kategorie:</h2>
+        <div  th:each="category: ${categories}">
+            <a th:href="@{'/kategoria?id=' + ${category.id}}">
+                <img th:src="${category.categoryImgUrl}" style="width: 200px"/>
+                <h4 th:text="${category.categoryName}"></h4>
+            </a>
 
-    <h4>Top 5:</h4>
+            <p th:text="${category.categoryDescription}"></p>
+        </div>
+
+    <h2>Top 5:</h2>
     <div th:replace="fragments :: list"></div>
 </body>
 </html>

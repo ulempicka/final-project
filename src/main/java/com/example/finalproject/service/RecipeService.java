@@ -23,10 +23,13 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    public void persistRecipe(Recipe recipeForm, Ingredient ingredientForm){
-        Recipe recipe = new Recipe(recipeForm.getTitle(),recipeForm.getDescription(), recipeForm.getTime(), recipeForm.getDifficulty(), recipeForm.getCategory());
+    public void persistRecipe(Recipe recipeForm, Ingredient ingredientForm, String categoryName){
+        Category categoryFromDb = findCategoryByName(categoryName).get();
+
+        Recipe recipe = new Recipe(recipeForm.getTitle(),recipeForm.getDescription(), recipeForm.getTime(), recipeForm.getDifficulty(), recipeForm.getPreparation());
         Ingredient ingredient = new Ingredient(ingredientForm.getName(), ingredientForm.getQuantity(), ingredientForm.getUnit(), ingredientForm.getAdditionalInfo());
         recipe.addIngredient(ingredient);
+        recipe.setCategory(categoryFromDb);
         recipeRepository.save(recipe);
     }
 
@@ -35,7 +38,6 @@ public class RecipeService {
         if(byId.isPresent()) {
             Recipe recipeFromDB = byId.get();
             Long id = recipeFromDB.getId();
-
         }
     }
 
@@ -61,5 +63,13 @@ public class RecipeService {
 
     public void deleteRecipe(Long id){
         recipeRepository.deleteById(id);
+    }
+
+    public Optional<Category> findCategoryByName(String categoryName){
+        return recipeRepository.findCategoryByName(categoryName);
+    }
+
+    public List<Category> findCategories(){
+        return recipeRepository.findAllCategories();
     }
 }

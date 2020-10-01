@@ -24,19 +24,19 @@ public class Recipe {
     private int time;
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
-//    @OneToMany
-    private String category;    //list
+    @ManyToOne()
+    private Category category;
     private int rating;
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.PERSIST)
     private List<Ingredient> ingredients = new ArrayList<>();
-//    private String preparation;
+    private String preparation;
 
-    public Recipe(String title, String description, int time, Difficulty difficulty, String category) {
+    public Recipe(String title, String description, int time, Difficulty difficulty, String preparation) {
         this.title = title;
         this.description = description;
         this.time = time;
         this.difficulty = difficulty;
-        this.category = category;
+        this.preparation = preparation;
     }
 
     public void addIngredient(Ingredient ingredient){

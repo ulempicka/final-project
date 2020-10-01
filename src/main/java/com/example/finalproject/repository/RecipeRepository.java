@@ -20,6 +20,12 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     List<Recipe> findByCategory(CategoryName categoryName);
 
+    @Query("SELECT c FROM Category c")
+    List<Category> findAllCategories();
+
+    @Query("SELECT c FROM Category c WHERE c.categoryName = :category")
+    Optional<Category> findCategoryByName(@Param("category") String categoryName);
+
 //    @Query("UPDATE Recipe r" +
 //            "SET r.title = :recipeForm.title, r.title = :recipeForm.title" +
 //            "WHERE r.id = recipeForm.id")

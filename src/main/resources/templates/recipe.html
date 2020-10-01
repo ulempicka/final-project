@@ -13,7 +13,7 @@
         <h2 th:text="${recipe.description}">Opis</h2>
         <p th:text="|Czas przygotowania: ${recipe.time}|">Czas przygotowania</p>
         <p th:text="|Poziom trudności: ${recipe.difficulty}|">Poziom trudności</p>
-        <p th:text="|Kategoria: ${recipe.category}|">Kategoria</p>
+<!--        <p th:text="|Kategoria: ${recipe.category}|">Kategoria</p>-->
         <p th:text="|Liczba polubień: ${recipe.rating}|">Liczba polubień</p>
         <a th:href="@{'/polub?id=' + ${recipe.id}}">
             <img src="https://cdn4.iconfinder.com/data/icons/evil-icons-user-interface/64/like-256.png" width="40px" height="40px"/>
@@ -28,5 +28,8 @@
             </li>
         </ul>
     </div>
+
+    <h2>Przygotowanie:</h2>
+    <p th:text="${recipe.preparation}"></p>
 </body>
 </html>
