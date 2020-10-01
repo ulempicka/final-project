@@ -76,7 +76,8 @@ public class RecipeController {
         Optional<Recipe> recipe = recipeService.findById(id);
         if (recipe.isPresent()){
             model.addAttribute("recipe", recipe.get());
-//            model.addAttribute("ingredient", recipe.get().getIngredients());
+            model.addAttribute("ingredient", recipe.get().getIngredients());
+            model.addAttribute("category", recipe.get().getCategory());
             model.addAttribute("mode", "edit");
             return "add";
         }else {
@@ -101,5 +102,18 @@ public class RecipeController {
     String delete(@RequestParam Long id){
         recipeService.deleteRecipe(id);
         return "redirect:/wszystkie";
+    }
+
+    @GetMapping("/kategoria")
+    String getCategory(@RequestParam Long id, Model model){
+        Optional<Category> category = recipeService.findCategoryById(id);
+        List<Recipe> recipes = recipeService.findByCategory(id);
+        if (category.isPresent()){
+            model.addAttribute("category", category.get());
+            model.addAttribute("recipes", recipes);
+            return "category";
+        }else {
+            return "redirect:/";
+        }
     }
 }

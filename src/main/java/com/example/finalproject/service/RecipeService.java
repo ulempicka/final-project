@@ -8,7 +8,6 @@ import com.example.finalproject.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,60 +15,64 @@ import java.util.Optional;
 public class RecipeService {
 
     private RecipeRepository recipeRepository;
-    private List<Recipe> recipes = new ArrayList<>();   //ta lista powinna byc po stronie category
 
     @Autowired
     public RecipeService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
 
-    public void persistRecipe(Recipe recipeForm, Ingredient ingredientForm, String categoryName){
-        Category categoryFromDb = findCategoryByName(categoryName).get();
+    public void persistRecipe(Recipe recipeForm, Ingredient ingredientForm, String categoryName) {
+        Category categoryFromDb = findCategoryByName(categoryName).get();   //cos nie tak z kategoria
 
-        Recipe recipe = new Recipe(recipeForm.getTitle(),recipeForm.getDescription(), recipeForm.getTime(), recipeForm.getDifficulty(), recipeForm.getPreparation());
+        Recipe recipe = new Recipe(recipeForm.getTitle(), recipeForm.getDescription(), recipeForm.getTime(), recipeForm.getDifficulty(), recipeForm.getPreparation());
         Ingredient ingredient = new Ingredient(ingredientForm.getName(), ingredientForm.getQuantity(), ingredientForm.getUnit(), ingredientForm.getAdditionalInfo());
         recipe.addIngredient(ingredient);
         recipe.setCategory(categoryFromDb);
         recipeRepository.save(recipe);
     }
 
-    public void updateRecipe(Recipe recipeForm){
-        Optional<Recipe> byId = findById(recipeForm.getId());
-        if(byId.isPresent()) {
-            Recipe recipeFromDB = byId.get();
-            Long id = recipeFromDB.getId();
-        }
-    }
+//    public void updateRecipe(Recipe recipeForm) {
+//        Optional<Recipe> byId = findById(recipeForm.getId());
+//        if (byId.isPresent()) {
+//            Recipe recipeFromDB = byId.get();
+//            //ustaw wszystkie pola
+//            recipeRepository.updateAllFields(recipeFromDB);
+//        }
+//    }
 
-    public void updateRating(Long id){
+    public void updateRating(Long id) {
         recipeRepository.updateRating(id);
     }
 
-    public List<Recipe> findAll(){
+    public List<Recipe> findAll() {
         return recipeRepository.findAllByOrderByTitle();
     }
 
-    public List<Recipe> findTop5(){
+    public List<Recipe> findTop5() {
         return recipeRepository.findTop5ByOrderByRatingDesc();
     }
 
-    public List<Recipe> findByCategory(CategoryName categoryName){
-        return recipeRepository.findByCategory(categoryName);
+    public List<Recipe> findByCategory(Long id) {
+        return recipeRepository.findByCategory(id);
     }
 
-    public Optional<Recipe> findById(Long id){
+    public Optional<Recipe> findById(Long id) {
         return recipeRepository.findById(id);
     }
 
-    public void deleteRecipe(Long id){
+    public void deleteRecipe(Long id) {
         recipeRepository.deleteById(id);
     }
 
-    public Optional<Category> findCategoryByName(String categoryName){
+    public Optional<Category> findCategoryByName(String categoryName) {
         return recipeRepository.findCategoryByName(categoryName);
     }
 
-    public List<Category> findCategories(){
+    public Optional<Category> findCategoryById(Long id) {
+        return recipeRepository.findCategoryById(id);
+    }
+
+    public List<Category> findCategories() {
         return recipeRepository.findAllCategories();
     }
 }
