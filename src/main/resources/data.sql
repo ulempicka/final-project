@@ -30,8 +30,21 @@ insert into recipe (id, title, description, time, difficulty, category_id, ratin
 values (1, 'Zupa pomidorowa', 'Domowa zupa pomidorowa przywołuje najpiękniejsze wspomnienia z dzieciństwa.', 25, 'EASY', 6, 0, 'Zagotuj bulion/rosół. Dodaj przecier i wymieszaj.
 Ponownie zagotuj. Dopraw do smaku solą i pieprzem. Podawaj z ugotowanym ryżem i natką pietruszki.');
 insert into recipe (id, title, description, time, difficulty, category_id, rating, preparation)
-values (2, 'Makaron z pesto z rukoli i pomidorkami', 'Obłędnie zielone, zachwycająco smaczne i błyskawiczne w przygotowaniu!', 15, 'EASY', 2, 0, 'Rozgrzej dużą
+values (2, 'Makaron z pesto z rukoli i pomidorkami', 'Obłędnie zielone, zachwycająco smaczne i błyskawiczne w przygotowaniu!', 15, 'EASY', 2, 10, 'Rozgrzej dużą
 patelnię, wsyp na nią orzeszki pinii i poczekaj 1–2 minuty, aż lekko zbrązowieją. Odstaw z palnika. Przesyp je do wysokiego naczynia');
+insert into recipe (id, title, description, time, difficulty, category_id, rating, preparation)
+values (3, 'Jaglanka z gruszkami', 'Rozgrzewająca jaglanka z jesienną kwintesencją – gruszką utopioną w cynamonie, podaną z uprażonymi płatkami migdałów i pyłkiem
+pszczelim', 20, 'EASY', 1, 1, 'Kaszę przelej zimną, potem ciepłą wodą. Przełóż do garnka, zalej mlekiem, dodaj kurkumę i gotuj około 15 minut.');
+insert into recipe (id, title, description, time, difficulty, category_id, rating, preparation)
+values (4, 'Gołąbki w sosie pomidorowym', 'Pyszne i proste w przygotowaniu. Do tego smakują jak u Mamy!', 120, 'MEDIUM', 3, 5, 'Ryż ugotuj al dente (3–4 minuty
+krócej niż wskazuje instrukcja na opakowaniu). W dużej misce wymieszaj mięso z wystudzonym ryżem i cebulą. Dodaj sól, pieprz, wymieszaj. Z masy uformuj małe krokiety.');
+insert into recipe (id, title, description, time, difficulty, category_id, rating, preparation)
+values (5, 'Placki z jabłkami – racuchy', 'Delikatne racuchy z pysznym jabłkowym nadzieniem, które rozpływa się w ustach!', 15, 'EASY', 4, 0, 'Jabłka obierz, pokrój
+w plasterki, a następnie w kostkę (kawałki owoców powinny być niewielkie). Mąkę wymieszaj z proszkiem do pieczenia. Oddziel białka od żółtek.');
+insert into recipe (id, title, description, time, difficulty, category_id, rating, preparation)
+values (6, 'Hummus', 'Delikatny, a zarazem wyrazisty hummus – idealny ze świeżym pieczywem!', 15, 'EASY', 9, 0, 'Ciecierzycę odsącz z zalewy (jeśli korzystasz z tej
+w puszce).Czosnek obierz, natkę pietruszki posiekaj.');
+
 
 insert into ingredient (id, name, quantity, unit, additional_info, recipe_id)
 values (1, 'bulionu', 2, 'L', 'polecam z rosołu z dnia poprzedniego', 1);

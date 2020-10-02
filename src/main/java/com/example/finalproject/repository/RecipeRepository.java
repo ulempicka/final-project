@@ -2,6 +2,7 @@ package com.example.finalproject.repository;
 
 import com.example.finalproject.model.Category;
 import com.example.finalproject.model.CategoryName;
+import com.example.finalproject.model.Difficulty;
 import com.example.finalproject.model.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -32,12 +33,17 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     @Query("SELECT c FROM Category c WHERE c.id = :id")
     Optional<Category> findCategoryById(@Param("id") Long id);
 
-//    @Query("UPDATE Recipe " +
-//            "SET rating = rating " +
-//            "WHERE id = :id")
-//    @Transactional
-//    @Modifying
-//    void updateAllFields(Recipe recipeForm);
+
+    @Query(value = "UPDATE recipe r " +
+            "        JOIN ingredient i ON r.id = i.recipe_id " +
+            "        JOIN category c  ON c.id = r.category_id " +
+            "    SET " +
+            "        r.title = :title, r.description = :description, r.time = :time, r.difficulty = :difficulty, r.rating = :rating " +
+            "    WHERE r.id = :id", nativeQuery = true)
+    @Transactional
+    @Modifying
+    void updateAllFields(@Param("id") Long id, @Param("title") String title, @Param("description") String description, @Param("time") int time,
+                         @Param("difficulty") Difficulty difficulty, @Param("rating") int rating);
 
     @Query("UPDATE Recipe " +
             "SET rating = rating+1 " +

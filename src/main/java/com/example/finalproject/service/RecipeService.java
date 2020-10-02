@@ -22,7 +22,7 @@ public class RecipeService {
     }
 
     public void persistRecipe(Recipe recipeForm, Ingredient ingredientForm, Category category) {
-        Category categoryFromDb = findCategoryByName(category.getCategoryName()).get();   //cos nie tak z kategoria
+        Category categoryFromDb = findCategoryByName(category.getCategoryName()).get();
 
         Recipe recipe = new Recipe(recipeForm.getTitle(), recipeForm.getDescription(), recipeForm.getTime(), recipeForm.getDifficulty(), recipeForm.getPreparation());
         Ingredient ingredient = new Ingredient(ingredientForm.getName(), ingredientForm.getQuantity(), ingredientForm.getUnit(), ingredientForm.getAdditionalInfo());
@@ -31,14 +31,10 @@ public class RecipeService {
         recipeRepository.save(recipe);
     }
 
-//    public void updateRecipe(Recipe recipeForm) {
-//        Optional<Recipe> byId = findById(recipeForm.getId());
-//        if (byId.isPresent()) {
-//            Recipe recipeFromDB = byId.get();
-//            //ustaw wszystkie pola
-//            recipeRepository.updateAllFields(recipeFromDB);
-//        }
-//    }
+    public void updateRecipe(Recipe recipeForm) {
+        recipeRepository.updateAllFields(recipeForm.getId(),recipeForm.getTitle(), recipeForm.getDescription(), recipeForm.getTime(),
+                recipeForm.getDifficulty(), recipeForm.getRating());
+    }
 
     public void updateRating(Long id) {
         recipeRepository.updateRating(id);

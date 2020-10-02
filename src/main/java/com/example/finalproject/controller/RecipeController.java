@@ -47,6 +47,7 @@ public class RecipeController {
         if (recipe.isPresent()){
             model.addAttribute("recipe", recipe.get());
             model.addAttribute("ingredients", recipe.get().getIngredients());
+            model.addAttribute("category", recipe.get().getCategory());
             return "recipe";
         }else {
             return "redirect:/";
@@ -86,12 +87,12 @@ public class RecipeController {
         }
     }
 
-//    @PostMapping("/edytuj")
-//    String edit(Recipe recipe){
-//        recipeService.updateRecipe(recipe);
-//        return "redirect:/wszystkie";
-////        return "redirect:/przepis?id=" + recipe.getId();
-//    }
+    @PostMapping("/edytuj")
+    String edit(Recipe recipe){
+        recipeService.updateRecipe(recipe);
+        return "redirect:/wszystkie";
+//        return "redirect:/przepis?id=" + recipe.getId();
+    }
 
     @GetMapping("/polub")
     String like(@RequestParam Long id){
