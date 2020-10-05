@@ -3,6 +3,7 @@
 <head th:include="fragments :: head">
 </head>
 <body>
+<div class="center">
     <div th:replace="fragments :: header"></div>
 
     <h2>Dodaj przepis</h2>
@@ -44,5 +45,6 @@
         Przygotowanie: <textarea th:field="*{recipe.preparation}"></textarea><br/>
         <input type="submit" value="Dodaj przepis">
     </form>
+</div>
 </body>
 </html>

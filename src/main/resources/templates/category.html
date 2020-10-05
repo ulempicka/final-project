@@ -3,6 +3,7 @@
 <head th:include="fragments :: head">
 </head>
 <body>
+<div class="center">
 <div th:replace="fragments :: header"></div>
 
 <h1 class="text-center" th:text="${category.polishName}">Tytuł</h1>
@@ -14,6 +15,7 @@
     <h4>Lista przepisów w tej kategorii:</h4>
     <div th:replace="fragments :: list"></div>
 
+</div>
 </div>
 
 </body>
