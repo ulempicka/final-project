@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: head">
+</head>
+<body>
+    <div th:replace="fragments :: header"></div>
+
+    <a href="/dodaj">Dodaj nowy przepis</a><br/>
+    <a href="/wszystkie">Wszystkie przepisy</a><br/>
+
+
+    <h1>Książka kucharska</h1>
+
+    <h2>Kategorie:</h2>
+        <div  th:each="category: ${categories}">
+            <a th:href="@{'/kategoria?id=' + ${category.id}}">
+                <img th:src="${category.categoryImgUrl}" style="width: 200px"/>
+                <h4 th:text="${category.polishName}"></h4>
+            </a>
+
+            <p th:text="${category.categoryDescription}"></p>
+        </div>
+
+    <h2>Top 5:</h2>
+    <div th:replace="fragments :: list"></div>
+</body>
+</html>

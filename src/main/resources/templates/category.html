@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head th:include="fragments :: head">
+</head>
+<body>
+<div class="center">
+<div th:replace="fragments :: header"></div>
+
+<h1 class="text-center" th:text="${category.polishName}">Tytuł</h1>
+<img margin="auto" th:src="${category.categoryImgUrl}" style="width: 400px"/>
+<div>
+
+    <i><p th:text="${category.categoryDescription}"></p></i>
+
+    <h4>Lista przepisów w tej kategorii:</h4>
+    <div th:replace="fragments :: list"></div>
+
+</div>
+</div>
+
+</body>
+</html>
